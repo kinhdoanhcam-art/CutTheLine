@@ -9,7 +9,32 @@ Both deployments run the same frozen source, SHA-256 `00ef977e0d60b14a09b56e785f
 
 ## Project run (address `0x14A9da6B5566f79C38b79368f6d109e43fEa792a`, through this app)
 
-Deploy tx [`0x2b499ddf…2a9f58eb`](https://explorer-studio.genlayer.com/tx/0x2b499ddf08701eb92c5f69be8fe3cce2946ba3afd89644c2f306ff642a9f58eb). The run through the app is recorded here once it has been made.
+Run date 2026-10-07, app at https://cut-the-line.vercel.app, MetaMask on StudioNet. Deploy tx [`0x2b499ddf…2a9f58eb`](https://explorer-studio.genlayer.com/tx/0x2b499ddf08701eb92c5f69be8fe3cce2946ba3afd89644c2f306ff642a9f58eb). **6 transactions** sent from the app, all FINALIZED with SUCCESS.
+
+Wallets: **A** = desk owner `0x3065E31B1D993d7C0D59E6786844cBa56780B2d3` · **B** = filer `0x5a52d040581A76e2C032542855D31480f2ea7097` · **C** = filer `0xADE4533b5C00Fc6c8E44F674213c081D919aaD1D`.
+Desk "Platform help desk": `7d134e00b2ec562453f4f2d8e0e88593328a127598c4f180b029f1fc8d653604` (the desk id depends only on the owner and the name, so it equals the Intelligent Contract run's desk id; the two deployments are separate) — https://cut-the-line.vercel.app/?d=7d134e00b2ec562453f4f2d8e0e88593328a127598c4f180b029f1fc8d653604.
+
+| # | Wallet | Action in the app | Tx hash | Result (read back by the app from the accepted state) |
+|---|---|---|---|---|
+| P1 | A | Open desk `Platform help desk` | [`0x230238a1…687e2be3`](https://explorer-studio.genlayer.com/tx/0x230238a184fe89cea9e9abdf8382f332d0fa42e4cf89de8ab2d8136e687e2be3) | desk open, no tickets |
+| P2 | C | File `Main won't build on my laptop, so my branch can't merge.` (first) | [`0x5efc8383…894007d3`](https://explorer-studio.genlayer.com/tx/0x5efc8383ddfa957ad0cbf8cccfa35ede15d5bb8b46931c85e2f7bcff894007d3) | **SELF_ONLY** — BACK |
+| P3 | B | File `Main won't build, so my branch can't merge and neither can anyone else's.` (after C) | [`0xcd32b4bb…d8279d46`](https://explorer-studio.genlayer.com/tx/0xcd32b4bbf4f4de4084251d3c5a8fb53b7458944ffb92b66082b0b495d8279d46) | **BLOCKS_OTHERS** — FRONT, next up |
+| P4 | B | File `The shared test database is down for everyone on the floor.` | [`0xfc0a856a…aef18b1f`](https://explorer-studio.genlayer.com/tx/0xfc0a856ac2e544a54a873838d12a5284d85f786fff2973cae928fe70aef18b1f) | **BLOCKS_OTHERS** but BACK — *front slot taken*; B's waiting count 2 of 3 (screenshot 1) |
+| P5 | C | The owner's panel | — (not sent) | *Take next* withheld with *Only the desk owner may take tickets* (screenshot 2) |
+| P6 | A | Take next | [`0xe62ff9d3…0e27bac9`](https://explorer-studio.genlayer.com/tx/0xe62ff9d3f3b6ed08efbe2efbef802d97c60c1c0df0eed6218bfdaa980e27bac9) | took B's FRONT ticket — filed after C's, served first |
+| P7 | A | Take next | [`0x85885608…3cd86dbf`](https://explorer-studio.genlayer.com/tx/0x8588560844769f86fb5f486adf0103e1c24bcdbb4da5b66d7a57cf3b3cd86dbf) | took C's BACK ticket; IN PROGRESS 2, BACK 1 (the database ticket, next up); screenshot 3 |
+
+A ticket filed later but read BLOCKS_OTHERS was served before an earlier SELF_ONLY ticket, and the same wallet's second
+BLOCKS_OTHERS ticket kept its verdict but waited in BACK. The app reported every write only after re-reading the desk
+and the ticket (`src/lib/verify.ts`).
+
+Screenshots:
+
+![FRONT and BACK lanes after three filings](docs/evidence/1-front-and-back-lanes.png)
+
+![A filer opens the owner's panel: Take next withheld with the contract's sentence](docs/evidence/2-not-the-owner.png)
+
+![The FRONT ticket taken first, then the earlier BACK one](docs/evidence/3-front-taken-first.png)
 
 ## Intelligent Contract run (address `0xaD4Da7C64122D5F228F937b5d1532686468c5cCA`, Studio)
 

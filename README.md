@@ -14,6 +14,7 @@ filer. GenLayer StudioNet (chain 61999) · py-genlayer v0.2.
 | Contract source | `contracts/BlocksOthers.py` (SHA-256 in `SOURCE_SHA256.txt`) |
 | Project deployment | [`0x14A9da6B5566f79C38b79368f6d109e43fEa792a`](https://explorer-studio.genlayer.com/address/0x14A9da6B5566f79C38b79368f6d109e43fEa792a) |
 | Intelligent Contract | BlocksOthers — the same frozen source, deployed separately at [`0xaD4Da7C64122D5F228F937b5d1532686468c5cCA`](https://explorer-studio.genlayer.com/address/0xaD4Da7C64122D5F228F937b5d1532686468c5cCA) |
+| Live app | https://cut-the-line.vercel.app |
 | Evidence | `RUNTIME_EVIDENCE.md` (one tx hash per row) · `TESTING.md` |
 
 ## What it does
@@ -29,7 +30,9 @@ Each wallet holds **one** open FRONT ticket per desk: a second BLOCKS_OTHERS tic
 with the note `front_lane_taken`. The owner takes the earliest FRONT ticket, and only when there is none the earliest
 BACK one; lanes never change after filing. On StudioNet, "Main won't build on my laptop, so my branch can't merge." was
 filed first and read **SELF_ONLY**; "Main won't build, so my branch can't merge and neither can anyone else's." was
-filed after it, read **BLOCKS_OTHERS**, and was taken first.
+filed after it, read **BLOCKS_OTHERS**, and was taken first — on the Intelligent Contract and again through this app.
+
+![The FRONT ticket taken first](docs/evidence/3-front-taken-first.png)
 
 Unclear readings count as SELF_ONLY, so no ticket jumps the queue on a guess.
 

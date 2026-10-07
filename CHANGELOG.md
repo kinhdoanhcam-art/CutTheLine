@@ -7,4 +7,6 @@
   of the same source.
 - App: overview; a desk view with FRONT, BACK and IN PROGRESS columns, a ticket box with the waiting count and front
   slot, the owner's next-up ticket and Take next, Resolve and Withdraw; a verification page reading `get_limits`.
+- Run through the app on StudioNet (6 transactions, `RUNTIME_EVIDENCE.md`): a later BLOCKS_OTHERS ticket served before an
+  earlier SELF_ONLY one; a second blocking ticket from the same wallet waited in BACK.
 - Tests: 56 Direct Mode contract tests, 33/33 mutants, frontend tests, calldata table and RPC probe, source hash; CI.

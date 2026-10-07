@@ -58,8 +58,13 @@ meter and disables *File ticket* above 255 bytes.
 
 ## On-chain runs
 
-See `RUNTIME_EVIDENCE.md`: the Intelligent Contract run (12 transactions in the table, every must-verify row PASS) and
-the Project run through this app, one hash per row.
+See `RUNTIME_EVIDENCE.md`: the Project run through this app (6 transactions) and the Intelligent Contract run (12
+transactions in the table, every must-verify row PASS), one hash per row.
+
+Project run through the app: C's laptop ticket (filed first) was read **SELF_ONLY** and waited in BACK; B's ticket (filed
+after) was read **BLOCKS_OTHERS** and went FRONT; B's second blocking ticket kept its verdict but waited in BACK with
+*front slot taken*; a filer saw *Take next* withheld with the contract's sentence; *Take next* served B's FRONT ticket
+first and C's earlier BACK ticket second. Every result was reported only after the app re-read the state: **PASS**.
 
 Intelligent Contract run: S1 (filed first) → SELF_ONLY in BACK and B1 (filed after) → BLOCKS_OTHERS in FRONT; B2 from the
 same wallet → BLOCKS_OTHERS in BACK with `front_lane_taken`; `take_next` served B1 before S1; a second wallet's B4 got
