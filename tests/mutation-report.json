@@ -1,0 +1,171 @@
+{
+ "total": 33,
+ "caught": 33,
+ "results": [
+  {
+   "name": "BLOCKS_OTHERS never reaches the FRONT lane",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_tooth_later_blocking_ticket_is_taken_first"
+  },
+  {
+   "name": "SELF_ONLY also goes to the FRONT lane",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_tooth_later_blocking_ticket_is_taken_first"
+  },
+  {
+   "name": "no per-wallet front slot (every BLOCKS_OTHERS goes FRONT)",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_outcome_and_lane_are_separate_fields"
+  },
+  {
+   "name": "front slot not recorded when a FRONT ticket is filed",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_outcome_and_lane_are_separate_fields"
+  },
+  {
+   "name": "note front_lane_taken not set",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_outcome_and_lane_are_separate_fields"
+  },
+  {
+   "name": "lane overwrites the outcome",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_outcome_and_lane_are_separate_fields"
+  },
+  {
+   "name": "take_next serves BACK before FRONT",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_tooth_later_blocking_ticket_is_taken_first"
+  },
+  {
+   "name": "BACK lane served last-in first-out",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_front_lane_beats_every_back_ticket_and_each_lane_is_fifo"
+  },
+  {
+   "name": "head pointer does not skip withdrawn tickets",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_take_next_skips_withdrawn_tickets_in_both_lanes"
+  },
+  {
+   "name": "front slot freed when the ticket is taken (IN_PROGRESS)",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_front_slot_held_while_in_progress_and_freed_on_resolve"
+  },
+  {
+   "name": "front slot not freed on resolve",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_front_slot_held_while_in_progress_and_freed_on_resolve"
+  },
+  {
+   "name": "front slot not freed on withdraw",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_withdrawing_a_front_ticket_frees_the_slot"
+  },
+  {
+   "name": "withdrawing a BACK ticket frees the front slot",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_withdrawing_a_back_ticket_keeps_the_front_slot_taken"
+  },
+  {
+   "name": "waiting cap off by one (4 waiting)",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_waiting_cap_counts_only_waiting_tickets"
+  },
+  {
+   "name": "taking a ticket does not reduce the filer's waiting count",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_waiting_cap_counts_only_waiting_tickets"
+  },
+  {
+   "name": "withdrawing does not reduce the waiting count",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_waiting_cap_counts_only_waiting_tickets"
+  },
+  {
+   "name": "desk cap off by one (201 tickets)",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_revert_desk_full - Assertion..."
+  },
+  {
+   "name": "desk full checked before the waiting cap",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_check_order_file_ticket - As..."
+  },
+  {
+   "name": "fail-safe flipped on unparseable output",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_fail_safe_on_unparseable_output"
+  },
+  {
+   "name": "unknown label maps to BLOCKS_OTHERS",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_fail_safe_on_unknown_label"
+  },
+  {
+   "name": "validator accepts any valid label",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_validator_rejects_disagreement_and_bad_shapes"
+  },
+  {
+   "name": "anyone may take tickets",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_runtime_table_in_order - Ass..."
+  },
+  {
+   "name": "anyone may resolve tickets",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_third_wallet_is_refused_by_every_write"
+  },
+  {
+   "name": "anyone may withdraw a ticket",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_third_wallet_is_refused_by_every_write"
+  },
+  {
+   "name": "an IN_PROGRESS ticket may be withdrawn",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_runtime_table_in_order - Ass..."
+  },
+  {
+   "name": "a WAITING ticket may be resolved",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_revert_not_in_progress - Ass..."
+  },
+  {
+   "name": "same request may be filed twice",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_whitespace_variants_share_one_ticket_id"
+  },
+  {
+   "name": "ticket id ignores whitespace normalization",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_whitespace_variants_share_one_ticket_id"
+  },
+  {
+   "name": "reserved token not checked on desk names",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_revert_reserved_token - Asse..."
+  },
+  {
+   "name": "request length cap off by one",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_revert_request_too_long - ge..."
+  },
+  {
+   "name": "fence strip: no gap and a single pass (cross-token rebuild survives)",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_fence_strip_is_fixed_point"
+  },
+  {
+   "name": "wallet leaks into the prompt",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_prompt_never_sees_wallets_or_state"
+  },
+  {
+   "name": "lane state leaks into the prompt",
+   "status": "CAUGHT",
+   "first_failure": "FAILED tests/contract/test_blocksothers.py::test_prompt_never_sees_wallets_or_state"
+  }
+ ]
+}

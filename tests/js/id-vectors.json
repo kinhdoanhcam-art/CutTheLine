@@ -1,0 +1,44 @@
+{
+  "owner": "0x3065E31B1D993d7C0D59E6786844cBa56780B2d3",
+  "filer": "0xADE4533b5C00Fc6c8E44F674213c081D919aaD1D",
+  "desks": [
+    {
+      "name": "Platform help desk",
+      "desk_id": "7d134e00b2ec562453f4f2d8e0e88593328a127598c4f180b029f1fc8d653604"
+    },
+    {
+      "name": "  Platform   help\tdesk ",
+      "desk_id": "7d134e00b2ec562453f4f2d8e0e88593328a127598c4f180b029f1fc8d653604"
+    },
+    {
+      "name": "Café　IT",
+      "desk_id": "801f4a9e55d7019905e0b45eb37878d5e7f2f9bf901094f363523e2a9e4729f1"
+    },
+    {
+      "name": "\u001cOps\u001f",
+      "desk_id": "a0c9c3c712af2ab73d756ce8be72499fd4d1c96c44e0286c65ce1622d64000ed"
+    },
+    {
+      "name": "﻿Support",
+      "desk_id": "dfce213f1129443a31e08cfaa8d0e90683eba68775d3c71a36c929cda76858ee"
+    }
+  ],
+  "tickets": [
+    {
+      "text": "Main won't build, so my branch can't merge and neither can anyone else's.",
+      "ticket_id": "c2e2dcf17721baa66987aed4494292d5dcab47fe957d99f4483b1c14874cca65"
+    },
+    {
+      "text": "Main won't build on my laptop, so my branch can't merge.",
+      "ticket_id": "3fecc79371f9cb44dacf18017794d3550a0575fc84dbc1ff7b7e62a3f4d90af4"
+    },
+    {
+      "text": "  The shared test databaseis down for everyone. ",
+      "ticket_id": "806a1c5cab2b71f08b3dec374027c9cf610e2d323794d713f7c7d81e91364159"
+    },
+    {
+      "text": "Printer jammed 🖨️ on my job",
+      "ticket_id": "e27946ec50a837fed1d2b4a3f78e65d1214c5554e75fa2d5edf84a8d538bf219"
+    }
+  ]
+}

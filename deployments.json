@@ -1,0 +1,8 @@
+{
+  "network": "GenLayer StudioNet",
+  "chain_id": 61999,
+  "contract_file": "contracts/BlocksOthers.py",
+  "source_sha256": "00ef977e0d60b14a09b56e785f861503b24a68ea70ac136e1f9d6c988bda2f01",
+  "intelligent_contract": "0xaD4Da7C64122D5F228F937b5d1532686468c5cCA",
+  "project": "0x14A9da6B5566f79C38b79368f6d109e43fEa792a"
+}

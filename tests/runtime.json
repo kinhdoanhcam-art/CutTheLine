@@ -1,0 +1,251 @@
+{
+ "contract": "BlocksOthers",
+ "wallets": {
+  "A": "desk owner",
+  "B": "filer B",
+  "C": "filer C"
+ },
+ "methods": {
+  "open_desk": [
+   "name"
+  ],
+  "file_ticket": [
+   "desk_id",
+   "text"
+  ],
+  "take_next": [
+   "desk_id"
+  ],
+  "resolve": [
+   "ticket_id"
+  ],
+  "withdraw_ticket": [
+   "ticket_id"
+  ],
+  "get_desk": [
+   "desk_id"
+  ],
+  "get_ticket": [
+   "ticket_id"
+  ]
+ },
+ "rows": [
+  {
+   "n": 1,
+   "wallet": "A",
+   "method": "open_desk",
+   "args": [
+    "Platform help desk"
+   ],
+   "save": {
+    "name": "D",
+    "payload": [
+     "L:BLOCKS_OTHERS:DESK:V1|",
+     "sender",
+     "L:|",
+     "len(norm(A0))",
+     "L:|",
+     "norm(A0)"
+    ]
+   },
+   "expect": "desk D, no tickets"
+  },
+  {
+   "n": 2,
+   "wallet": "C",
+   "method": "file_ticket",
+   "args": [
+    "$D",
+    "Main won't build on my laptop, so my branch can't merge."
+   ],
+   "save": {
+    "name": "T2",
+    "payload": [
+     "L:BLOCKS_OTHERS:TICKET:V1|",
+     "ID:D",
+     "L:|",
+     "sender",
+     "L:|",
+     "len(norm(A1))",
+     "L:|",
+     "norm(A1)"
+    ]
+   },
+   "expect": "SELF_ONLY → BACK lane, position 1"
+  },
+  {
+   "n": 3,
+   "wallet": "B",
+   "method": "file_ticket",
+   "args": [
+    "$D",
+    "Main won't build, so my branch can't merge and neither can anyone else's."
+   ],
+   "save": {
+    "name": "T3",
+    "payload": [
+     "L:BLOCKS_OTHERS:TICKET:V1|",
+     "ID:D",
+     "L:|",
+     "sender",
+     "L:|",
+     "len(norm(A1))",
+     "L:|",
+     "norm(A1)"
+    ]
+   },
+   "expect": "BLOCKS_OTHERS → FRONT lane, position 1 (ahead_total 0, though filed after C)"
+  },
+  {
+   "n": 4,
+   "wallet": "B",
+   "method": "file_ticket",
+   "args": [
+    "$D",
+    "The shared test database is down for everyone on the floor."
+   ],
+   "save": {
+    "name": "T4",
+    "payload": [
+     "L:BLOCKS_OTHERS:TICKET:V1|",
+     "ID:D",
+     "L:|",
+     "sender",
+     "L:|",
+     "len(norm(A1))",
+     "L:|",
+     "norm(A1)"
+    ]
+   },
+   "expect": "outcome BLOCKS_OTHERS but BACK lane, note front_lane_taken"
+  },
+  {
+   "n": 5,
+   "wallet": "C",
+   "method": "file_ticket",
+   "args": [
+    "$D",
+    "The test database copy I reset is down after the reset."
+   ],
+   "save": {
+    "name": "T5",
+    "payload": [
+     "L:BLOCKS_OTHERS:TICKET:V1|",
+     "ID:D",
+     "L:|",
+     "sender",
+     "L:|",
+     "len(norm(A1))",
+     "L:|",
+     "norm(A1)"
+    ]
+   },
+   "expect": "SELF_ONLY → BACK lane (position 3)"
+  },
+  {
+   "n": 6,
+   "wallet": "A",
+   "method": "take_next",
+   "args": [
+    "$D"
+   ],
+   "expect": "takes B's ticket T3 (row 3) → IN_PROGRESS"
+  },
+  {
+   "n": 7,
+   "wallet": "A",
+   "method": "take_next",
+   "args": [
+    "$D"
+   ],
+   "expect": "takes C's ticket T2 (row 2) → IN_PROGRESS"
+  },
+  {
+   "n": 8,
+   "wallet": "B",
+   "method": "take_next",
+   "args": [
+    "$D"
+   ],
+   "revert": "Only the desk owner may take tickets",
+   "expect": "revert *Only the desk owner may take tickets*"
+  },
+  {
+   "n": 9,
+   "wallet": "C",
+   "method": "withdraw_ticket",
+   "args": [
+    "$T2"
+   ],
+   "revert": "Only a waiting ticket can be withdrawn",
+   "expect": "revert *Only a waiting ticket can be withdrawn*"
+  },
+  {
+   "n": 10,
+   "wallet": "A",
+   "method": "resolve",
+   "args": [
+    "$T3"
+   ],
+   "expect": "T3 RESOLVED; B's front slot is free, T4 stays in BACK"
+  },
+  {
+   "n": 11,
+   "wallet": "C",
+   "method": "file_ticket",
+   "args": [
+    "$D",
+    "Deploys to staging fail for every squad since this morning."
+   ],
+   "save": {
+    "name": "T11",
+    "payload": [
+     "L:BLOCKS_OTHERS:TICKET:V1|",
+     "ID:D",
+     "L:|",
+     "sender",
+     "L:|",
+     "len(norm(A1))",
+     "L:|",
+     "norm(A1)"
+    ]
+   },
+   "expect": "BLOCKS_OTHERS → FRONT lane (C's own slot)"
+  },
+  {
+   "n": 12,
+   "wallet": "A",
+   "method": "take_next",
+   "args": [
+    "$D"
+   ],
+   "expect": "takes T11 (row 11) before T4 and T5; get_desk(D): front [], back [T4, T5]"
+  },
+  {
+   "n": 13,
+   "kind": "view",
+   "method": "get_desk",
+   "args": [
+    "$D"
+   ],
+   "expect": "read: front [], back [T4, T5], in_progress [T2, T11]"
+  }
+ ],
+ "caps": [
+  {
+   "label": "a desk name at the 60-character cap",
+   "method": "open_desk",
+   "args": [
+    "x*60"
+   ]
+  },
+  {
+   "label": "a request at the 150-character cap",
+   "method": "file_ticket",
+   "args": [
+    "$D",
+    "x*150"
+   ]
+  }
+ ]
+}
